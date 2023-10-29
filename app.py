@@ -26,6 +26,7 @@ def get_countries_json():
 def index():
     return render_template('index.html')
 
+
 def convert_to_local_time(utc_time, country):
     # Get the time zone for the selected country using the OpenCage API
     geocoding_url = f'https://api.opencagedata.com/geocode/v1/json?q={quote(country)}&key={OPENCAGE_API_KEY}'
