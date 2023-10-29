@@ -9,7 +9,7 @@ Below I have discussed step-by-step procedure of this project implementation
 ## Project Implementation and Compatibility
 This project has been meticulously developed to seamlessly function on both desktop and mobile platforms. For a live demonstration, please visit our website at https://solarsage.onrender.com/.
 
-## Testing Phase success:
+## Testing Phase success
 The project has successfully completed its testing phase, which involves the retrieval of current timezone information for various locations. This process is achieved through the following steps:
 1. Country Data Mapping: We have created a static file named countries.json as a reference for populating the countries dropdown field. The source of this file can be found on GitHub [Country Code Mapping](https://gist.github.com/keeguon/2310008)
 2. Geocoding with API (opencagedata): Our project utilizes the OpenCage Data API to fetch geocoding information. This includes latitude, longitude, sunrise, and sunset times for the selected country and date.
