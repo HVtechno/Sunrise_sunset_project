@@ -5,12 +5,15 @@ import pytz
 from datetime import datetime, timedelta
 from opencage.geocoder import OpenCageGeocode
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
 #call environment variables
-OPENCAGE_API_KEY = os.environ.get('OPENCAGE_API_KEY')
-Google_api_key = os.environ.get('GOOGLE_API_KEY')
+OPENCAGE_API_KEY = os.getenv('OPENCAGE_API_KEY')
+Google_api_key = os.getenv('GOOGLE_API_KEY')
 
 # Initialize the geocoder
 geocoder = OpenCageGeocode(OPENCAGE_API_KEY)
