@@ -1,0 +1,4 @@
+Flask==2.2.5
+opencage==2.3.0
+pytz==2022.1
+requests==2.31.0

@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify, send_file
 import requests
 from urllib.parse import quote
 import pytz
-import datetime
 from datetime import datetime, timedelta
 from opencage.geocoder import OpenCageGeocode
 from config import OPENCAGE_API_KEY,Google_api_key
