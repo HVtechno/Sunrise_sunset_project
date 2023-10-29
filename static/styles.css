@@ -207,6 +207,9 @@ button:hover {
 
 /* Add a media query for mobile styles */
 @media (max-width: 768px) {
+    body{
+        overflow-y: auto;
+    }
     .hide-mobile{
         display: none;
     }
