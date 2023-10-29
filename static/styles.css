@@ -1,0 +1,245 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing:border-box;
+}
+body{
+    position: relative;
+    width:100%;
+    height: 100vh;
+    background-color: #ccccff;
+    overflow-y:hidden;
+    animation: sky 5.5s 2s forwards;
+}
+img{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+}
+.sun{
+    position: absolute;
+    top: 5%;
+    left:70%;
+    width:100px;
+    height:100px;
+    background-color: #fcfc3a;
+    border-radius: 50%;
+    box-shadow: 0 0 20px 10px #fcfc3a;
+    animation: sun 15s forwards;
+}
+@keyframes sun {
+    100%{
+        transform: translateY(750px);
+    }
+}
+@keyframes sky {
+    50%{
+        background-color: #ffd700;
+    }
+    65%{
+        background-color: #ffb90f;
+    }
+    85%{
+        background-color: #b39300;
+    }
+    100%{
+        background-color: #68228b;
+    }
+}
+.moon{
+    position: absolute;
+    top:5%;
+    right:10%;
+    width:100px;
+    height:100px;
+    background-color: transparent;
+    box-shadow: 20px 10px #fff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: moon 0.8s  7s forwards;
+}
+@keyframes moon {
+    100%{
+        opacity: 1;
+    }
+}
+.cloud{
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 30%;
+    overflow:hidden; 
+    z-index: 1;
+
+}
+.cloud1{
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 400px;
+    Z-index: 1;
+    animation: animatedCloud 50s linear infinite;
+}
+.cloud2{
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 300px;
+    Z-index: 1;
+    animation: animatedCloud 35s linear infinite;
+}
+.cloud3{
+    position: absolute;
+    top:0;
+    left:0;
+    max-width: 400px;
+    Z-index: 1;
+    animation: animatedCloud 80s linear infinite;
+}
+@keyframes animatedCloud {
+    0%{
+        transform: translateX(-100%) scale(1);
+    }
+    100%{
+        transform: translateX(400%) scale(1.2);
+    }
+}
+
+/* form container */
+
+h1 {
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+    /*color: #FF0000; /* Choose your preferred color */
+}
+
+#sunrise-sunset-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-column {
+    flex: 1;
+    margin-right: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    width: 50%;
+    padding: 10px;
+    background-color: #0074D9;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    /*background-color: #0056b3;*/
+    background: linear-gradient(to right, #9400D3, #4B0082, #0000FF, #008000, #FFFF00, #FFA500, #FF0000);
+    
+}
+
+.loader {
+    display: none;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    left: 45%;
+    top: 70%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#result {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* mobile view */
+
+/* Add a media query for mobile styles */
+@media (max-width: 768px) {
+    .hide-mobile{
+        display: none;
+    }
+    .cloud{
+        height: 20%;
+    }
+    #sunrise-sunset-form {
+        top: 50%;
+        width: 80%;
+    }
+    .form-row {
+        display: flex;
+        flex-direction: column;
+    }
+    .form-column {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    label {
+        width: 120px; /* Set a fixed width for labels */
+    }
+
+    input, select {
+        flex: 1; /* Allow inputs and selects to take up remaining space */
+        margin: 5px;
+    }
+    
+    #show-button {
+        width: 50%; /* Full width for the "Show" button */
+    }
+    
+}

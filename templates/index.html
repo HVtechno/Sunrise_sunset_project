@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <title>Sunrise and Sunset App</title>
+</head>
+<body>
+    <form id="sunrise-sunset-form">
+        <h1>Sunrise & Sunset Times</h1>
+        <br>
+        <div class="form-row">
+            <div class="form-column">
+                <label for="date">Select Date</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="form-column">
+                <label for="country">Select Country</label>
+                <select id="country" name="country" class="select2">
+                    <option value="" selected disabled>Select a country</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <button type="button" id="show-button">Show</button>
+        <div id="loader" class="loader"></div>
+        <div id="result">
+            <div class="result-item">
+                <span id="sunrise-time"></span>
+            </div>
+            <div class="result-item">
+                <span id="sunset-time"></span>
+            </div>
+        </div>
+    </form>
+    <div class="sun"></div>
+    <img src="/static/bg-building.png" alt="" class="hide-mobile">
+    <div class="moon"></div>
+    <div class="cloud">
+        <img src="/static/cloud1.png" class="cloud1" alt="">
+        <img src="/static/cloud2.png" class="cloud2" alt="">
+        <img src="/static/cloud3.png" class="cloud3" alt="">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            // Fetch the country data from the JSON file
+            $.getJSON("countries.json", function (data) {
+                var countrySelect = $("#country");
+    
+                // Loop through the data and add options to the select element
+                $.each(data, function (index, country) {
+                    countrySelect.append($("<option>", {
+                        value: country.name,
+                        text: country.name
+                    }));
+                });
+
+                // Initialize Select2 with typeahead
+                countrySelect.select2({
+                    placeholder: "Select a country",
+                    tags: true
+                });
+            });
+    
+            $("#show-button").click(function () {
+                var date = $("#date").val();
+                var country = $("#country").val();
+    
+                if (!date || !country) {
+                    // Display an error message using SweetAlert
+                    swal("Error", "Please select both date and country.", "error");
+                    return;
+                }
+
+                // Show the loader when the button is clicked
+                $("#loader").show();
+
+                // Disable the button to prevent multiple requests
+                $("#show-button").prop("disabled", true);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/get_sunrise_sunset",
+                    data: { date: date, country: country },
+                    success: function (data) {
+                        // Hide the loader once data is loaded
+                        $("#loader").hide();
+                        
+                        // Re-enable the button
+                        $("#show-button").prop("disabled", false);
+
+                        // Display sunrise and sunset times with emojis
+                        var sunriseEmoji = "🌅";
+                        var sunsetEmoji = "🌆";
+
+                        $("#sunrise-time").html(sunriseEmoji + " " + data.sunrise);
+                        $("#sunset-time").html(sunsetEmoji + " " + data.sunset);
+                    },
+                    error: function () {
+                        // Hide the loader on error and re-enable the button
+                        $("#loader").hide();
+                        $("#show-button").prop("disabled", false);
+                        swal("Error", "Failed to retrieve data.", "error");
+                    }
+                });
+            });
+        });
+    </script>    
+</body>
+</html>
