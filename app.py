@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 #call environment variables
 OPENCAGE_API_KEY = os.getenv('OPENCAGE_API_KEY')
-Google_api_key = os.getenv('GOOGLE_API_KEY')
+Google_api_key = os.getenv('Google_api_key')
 
 # Initialize the geocoder
 geocoder = OpenCageGeocode(OPENCAGE_API_KEY)
