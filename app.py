@@ -4,9 +4,13 @@ from urllib.parse import quote
 import pytz
 from datetime import datetime, timedelta
 from opencage.geocoder import OpenCageGeocode
-from config import OPENCAGE_API_KEY,Google_api_key
+import os
 
 app = Flask(__name__)
+
+#call environment variables
+OPENCAGE_API_KEY = os.environ.get('OPENCAGE_API_KEY')
+Google_api_key = os.environ.get('GOOGLE_API_KEY')
 
 # Initialize the geocoder
 geocoder = OpenCageGeocode(OPENCAGE_API_KEY)
