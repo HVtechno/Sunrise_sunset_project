@@ -208,7 +208,7 @@ button:hover {
 /* Add a media query for mobile styles */
 @media (max-width: 768px) {
     body{
-        overflow-y: auto;
+        overflow-y: hidden;
     }
     .hide-mobile{
         display: none;
@@ -217,7 +217,7 @@ button:hover {
         height: 20%;
     }
     #sunrise-sunset-form {
-        top: 50%;
+        top: 65%;
         width: 80%;
     }
     .form-row {
