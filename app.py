@@ -26,6 +26,9 @@ def get_countries_json():
 def index():
     return render_template('index.html')
 
+@app.route('/policy')
+def policy():
+    return render_template('policy.html')
 
 def convert_to_local_time(utc_time, country):
     # Get the time zone for the selected country using the OpenCage API
