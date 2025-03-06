@@ -38,6 +38,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy with Gunicorn
+      - name: Deploy with flask
         run: |
-          gunicorn -w 4 -b 0.0.0.0:8000 app:app
+          flask run
