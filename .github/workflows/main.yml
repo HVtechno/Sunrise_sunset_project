@@ -38,10 +38,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Flask
+        run: pip install flask
+
       - name: Set Flask environment variables
         run: |
           echo "FLASK_APP=app.py" >> $GITHUB_ENV
           echo "FLASK_ENV=production" >> $GITHUB_ENV
 
       - name: Start Flask app
-        run: flask run --host=0.0.0.0 --port=5000
+        run: |
+          export PATH=$HOME/.local/bin:$PATH
+          flask run --host=0.0.0.0 --port=5000
