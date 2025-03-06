@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12.8"
+          python-version: "3.10"
 
       - name: Install dependencies
         run: |
@@ -38,6 +38,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy with flask
-        run: |
-          flask run
+      - name: Install Gunicorn
+        run: pip install gunicorn
+
+      - name: Deploy with Gunicorn
+        run: gunicorn -w 4 -b 0.0.0.0:8000 app:app
