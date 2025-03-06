@@ -38,8 +38,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Gunicorn
-        run: pip install gunicorn
+      - name: Set Flask environment variables
+        run: |
+          echo "FLASK_APP=app.py" >> $GITHUB_ENV
+          echo "FLASK_ENV=production" >> $GITHUB_ENV
 
-      - name: Deploy with Gunicorn
-        run: gunicorn -w 4 -b 0.0.0.0:8000 app:app
+      - name: Start Flask app
+        run: flask run --host=0.0.0.0 --port=5000
